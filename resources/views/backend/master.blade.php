@@ -7,9 +7,7 @@
     <meta name="description" content="adminHMD professional admin dashboard template">
     <title>Dashboard | adminHMD</title>
 
-    <link rel="stylesheet" href="{{asset('')}}assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{asset('')}}assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{asset('')}}assets/css/style.css">
+    @stack('styles');
 </head>
 
 <body>
@@ -20,11 +18,11 @@
         @include('backend.parts.leftbar')
 
         {{-- topbar include --}}
-        
-        
-        
+
+
+
         <div class="admin-main">
-            
+
             @include('backend.parts.topbar')
 
 
@@ -36,8 +34,7 @@
         </div>
     </div>
 
-    <script src="{{asset('')}}assets/js/bootstrap.bundle.min.js"></script>
-    <script src="{{asset('')}}assets/js/main.js"></script>
+    @stack('scripts')
 </body>
 
 </html>
