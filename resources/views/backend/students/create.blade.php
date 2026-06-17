@@ -36,8 +36,8 @@
                             <!-- Full Name -->
                             <div class="col-md-6">
                                 <label class="form-label" for="name">Full Name</label>
-                                <input class="form-control" id="name" name="name" type="text"
-                                    value="{{ old('name') }}" required>
+                                <input class="form-control" id="name" name="fullname" type="text"
+                                    value='name' required>
                                 <div class="invalid-feedback">Full name is required.</div>
                             </div>
 
@@ -83,12 +83,12 @@
                                 <label class="form-label" for="district">District</label>
                                 <select class="form-select" id="district" name="district" required>
                                     <option value="">Choose a District</option>
-                                    <option value="Dhaka" {{ old('district') == 'Dhaka' ? 'selected' : '' }}>Dhaka</option>
-                                    <option value="Sylhet" {{ old('district') == 'Sylhet' ? 'selected' : '' }}>Sylhet
+                                    <option value="1">Dhaka</option>
+                                    <option value="2">Sylhet
                                     </option>
-                                    <option value="Rangpur" {{ old('district') == 'Rangpur' ? 'selected' : '' }}>Rangpur
+                                    <option value="3" >Rangpur
                                     </option>
-                                    <option value="Bogura" {{ old('district') == 'Bogura' ? 'selected' : '' }}>Bogura
+                                    <option value="4" >Bogura
                                     </option>
                                 </select>
                                 <div class="invalid-feedback">Choose a District.</div>
