@@ -23,7 +23,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+       return view('backend.students.create');
     }
 
     /**
@@ -31,7 +31,8 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        echo "hello world!";
     }
 
     /**

@@ -18,7 +18,7 @@
 
             <section class="panel">
                 <div class="d-flex justify-content-end">
-                    <a class="btn btn-danger" href="{{ url('/studnets/create') }}">New Student</a>
+                    <a class="btn btn-danger" href="{{route('student.create')}}">New Student</a>
 
 
 
@@ -46,11 +46,11 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
                                 <th>Gender</th>
+                                <th>Email</th>
+                                <th>Phone</th>
                                 <th>District</th>
-                                <th>Subjects</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,11 +66,12 @@
                                                 alt="Wireless Headset" /><span>{{ $student->name }}</span>
                                         </div>
                                     </td>
-                                    <td>{{ $student->phone }}</td>
+                                    <td>{{ $student->gender }}</td>
                                     <td>
                                         <span class="badge text-bg-success">{{ $student->email }}</span>
                                     </td>
-                                    <td>{{ $student->gender }}</td>
+                                    <td>{{ $student->phone }}</td>
+
                                     <td>{{ $student->district }}</td>
                                     <td class="">
                                         {{ $student->subjects }}
