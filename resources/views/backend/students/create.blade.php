@@ -22,6 +22,17 @@
 
             <section class="row g-3">
                 <div class="col-12 col-xl-12">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <h3>Opps! There were som problems with your input.</h3>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form class="panel needs-validation" action="{{ route('student.store') }}" method="post" novalidate>
                         @csrf
                         <div class="panel-header">
@@ -36,8 +47,8 @@
                             <!-- Full Name -->
                             <div class="col-md-6">
                                 <label class="form-label" for="name">Full Name</label>
-                                <input class="form-control" id="name" name="fullname" type="text"
-                                    value='name' required>
+                                <input class="form-control" id="name" name="fullname" type="text" value=''
+                                    required>
                                 <div class="invalid-feedback">Full name is required.</div>
                             </div>
 
@@ -45,7 +56,7 @@
                             <div class="col-md-6">
                                 <label class="form-label" for="gender">Gender</label> <br>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" value="Male" type="radio" name="gender"
+                                    <input class="form-check-input" value="" type="radio" name="gender"
                                         id="genderMale" {{ old('gender', 'Male') == 'Male' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="genderMale">Male</label>
                                 </div>
@@ -86,9 +97,9 @@
                                     <option value="1">Dhaka</option>
                                     <option value="2">Sylhet
                                     </option>
-                                    <option value="3" >Rangpur
+                                    <option value="3">Rangpur
                                     </option>
-                                    <option value="4" >Bogura
+                                    <option value="4">Bogura
                                     </option>
                                 </select>
                                 <div class="invalid-feedback">Choose a District.</div>
