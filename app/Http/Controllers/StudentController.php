@@ -14,8 +14,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students= Student::all();
-        return view('backend.students.index',compact('students'));
+        $students = Student::all();
+        return view('backend.students.index', compact('students'));
     }
 
     /**
@@ -23,7 +23,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-       return view('backend.students.create');
+        return view('backend.students.create');
     }
 
     /**
@@ -33,9 +33,10 @@ class StudentController extends Controller
     {
 
         $request->validate([
-            'fullname'=>'required|min:4|max:25',
-            'gender'=>'required',
-            'email'=>'email|required|unique:students,email'
+            'fullname' => 'required|min:4|max:25',
+            'gender' => 'required',
+            'email' => 'email|required|unique:students,email',
+            'phone' => 'min:11||max:14'
 
         ]);
 
@@ -43,17 +44,24 @@ class StudentController extends Controller
         // dd($request);
         // echo "hello world!";
         $student = new Student;
-        $student -> name =$request -> fullname;
-        $student -> gender =$request -> gender;
-        $student -> email =$request -> email;
-        $student -> phone =$request -> phone;
-        $student -> district =$request->district;
-        $student -> subjects =$request -> subject;
+        $student->name = $request->fullname;
+        $student->gender = $request->gender;
+        $student->email = $request->email;
+        $student->phone = $request->phone;
+        $student->district = $request->district;
+        $subjects = $request->subjects;
+
+        $subjects = implode(",", $subjects);
+
+
+        $student->subjects = $subjects;
+
+        // dd($subject);
 
         $student->save();
-        return redirect('/students');
+        return redirect('/students')->with('succes', 'Successfully Student Created');
 
-        }
+    }
 
     /**
      * Display the specified resource.
@@ -82,8 +90,11 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $student = Student::find($id);
+        $student->delete();
+        return redirect()->route('student.index')->with('success', 'Student Deleted!');
     }
+
 }

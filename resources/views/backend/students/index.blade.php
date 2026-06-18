@@ -17,8 +17,14 @@
             </div>
 
             <section class="panel">
+                @session('succes')
+                    <div class="alert alert-success" role="alert">
+                        {{ $value }}
+                    </div>
+                @endsession
+
                 <div class="d-flex justify-content-end">
-                    <a class="btn btn-danger" href="{{route('student.create')}}">New Student</a>
+                    <a class="btn btn-danger" href="{{ route('student.create') }}">New Student</a>
 
 
 
@@ -44,12 +50,13 @@
                     <table class="table align-middle mb-0" id="ordersTable" data-searchable-table>
                         <thead>
                             <tr>
-                                <th>Id</th>
+                                <th style="width: 50px;">Id</th>
                                 <th>Name</th>
                                 <th>Gender</th>
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>District</th>
+                                <th>Subjects</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -57,7 +64,7 @@
 
                             @foreach ($students as $student)
                                 <tr>
-                                    <td class="fw-semibold">
+                                    <td style="width: 50px;" class="fw-semibold">
                                         {{ $student->id }}
                                     </td>
                                     <td>
@@ -76,6 +83,28 @@
                                     <td class="">
                                         {{ $student->subjects }}
                                     </td>
+
+
+                                    <td class="text-end">
+                                        <button class="btn btn-info btn-sm text-white" type="button">
+                                            <i class="bi bi-eye"></i>
+
+                                        </button>
+
+
+                                        <form action="{{ route('student.destroy',$student->id ) }}" method="post">
+                                            @csrf
+                                            <button class="btn btn-danger btn-sm"
+                                                type="submit">
+                                                <i class="bi bi-trash"></i>
+
+                                            </button>
+                                        </form>
+
+
+
+                                    </td>
+
                                 </tr>
                             @endforeach
                         </tbody>

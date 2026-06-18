@@ -47,8 +47,8 @@
                             <!-- Full Name -->
                             <div class="col-md-6">
                                 <label class="form-label" for="name">Full Name</label>
-                                <input class="form-control" id="name" name="fullname" type="text" value=''
-                                    required>
+                                <input class="form-control" id="name" name="fullname" type="text"
+                                    value="{{ old('fullname') }}" required>
                                 <div class="invalid-feedback">Full name is required.</div>
                             </div>
 
@@ -56,18 +56,18 @@
                             <div class="col-md-6">
                                 <label class="form-label" for="gender">Gender</label> <br>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" value="" type="radio" name="gender"
-                                        id="genderMale" {{ old('gender', 'Male') == 'Male' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="gender" value="male"
+                                        {{ old('gender') == 'male' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="genderMale">Male</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" value="Female" type="radio" name="gender"
-                                        id="genderFemale" {{ old('gender') == 'Female' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="gender" value="female"
+                                        {{ old('gender') == 'female' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="genderFemale">Female</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" value="Others" type="radio" name="gender"
-                                        id="genderOthers" {{ old('gender') == 'Others' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="gender" value="others"
+                                        {{ old('gender') == 'others' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="genderOthers">Others</label>
                                 </div>
                                 <div class="invalid-feedback">Gender is required.</div>
@@ -76,16 +76,16 @@
                             <!-- Email -->
                             <div class="col-md-6">
                                 <label class="form-label" for="email">Email</label>
-                                <input class="form-control" id="email" name="email" type="email"
-                                    value="{{ old('email') }}" required>
+                                <input class="form-control" value="{{ old('email') }}" name="email" type="email"
+                                    required>
                                 <div class="invalid-feedback">Enter a valid email.</div>
                             </div>
 
                             <!-- Phone -->
                             <div class="col-md-6">
                                 <label class="form-label" for="phone">Phone</label>
-                                <input class="form-control" id="phone" name="phone" type="tel"
-                                    value="{{ old('phone') }}" required>
+                                <input class="form-control" value="{{ old('phone') }}" name="phone" type="tel"
+                                    required>
                                 <div class="invalid-feedback">Phone number is required.</div>
                             </div>
 
@@ -94,12 +94,12 @@
                                 <label class="form-label" for="district">District</label>
                                 <select class="form-select" id="district" name="district" required>
                                     <option value="">Choose a District</option>
-                                    <option value="1">Dhaka</option>
-                                    <option value="2">Sylhet
+                                    <option value="1" {{ old('district') == '1' ? 'selected' : '' }}>Dhaka</option>
+                                    <option value="2" {{ old('district') == '2' ? 'selected' : '' }}>Sylhet
                                     </option>
-                                    <option value="3">Rangpur
+                                    <option value="3" {{ old('district') == '3' ? 'selected' : '' }}>Rangpur
                                     </option>
-                                    <option value="4">Bogura
+                                    <option value="4" {{ old('district') == '4' ? 'selected' : '' }}>Bogura
                                     </option>
                                 </select>
                                 <div class="invalid-feedback">Choose a District.</div>
@@ -110,32 +110,27 @@
                                 <label class="form-label d-block">Subject</label>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="subjects[]" value="JAVASCRIPT"
-                                        id="checkJs"
-                                        {{ is_array(old('subjects')) && in_array('JAVASCRIPT', old('subjects')) ? 'checked' : '' }}>
+                                        id="checkJs">
                                     <label class="form-check-label" for="checkJs">JAVASCRIPT</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="subjects[]" value="PHP"
-                                        id="checkPhp"
-                                        {{ is_array(old('subjects')) && in_array('PHP', old('subjects')) ? 'checked' : '' }}>
+                                        id="checkPhp">
                                     <label class="form-check-label" for="checkPhp">PHP</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="subjects[]" value="LARAVEL"
-                                        id="checkLaravel"
-                                        {{ is_array(old('subjects')) && in_array('LARAVEL', old('subjects')) ? 'checked' : '' }}>
+                                        id="checkLaravel">
                                     <label class="form-check-label" for="checkLaravel">LARAVEL</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="subjects[]" value="JAVA"
-                                        id="checkJava"
-                                        {{ is_array(old('subjects')) && in_array('JAVA', old('subjects')) ? 'checked' : '' }}>
+                                        id="checkJava">
                                     <label class="form-check-label" for="checkJava">JAVA</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="subjects[]" value="REACT_JS"
-                                        id="checkReact"
-                                        {{ is_array(old('subjects')) && in_array('REACT_JS', old('subjects')) ? 'checked' : '' }}>
+                                        id="checkReact">
                                     <label class="form-check-label" for="checkReact">React js</label>
                                 </div>
                                 <div class="invalid-feedback">Choose Your Subjects</div>
