@@ -85,16 +85,21 @@
                                     </td>
 
 
-                                    <td class="text-end">
-                                        <button class="btn btn-info btn-sm text-white" type="button">
-                                            <i class="bi bi-eye"></i>
+                                    <td class="d-flex">
+
+                                        <button class="btn btn-info btn-sm" type="submit">
+                                            <a href="{{ route('student.edit', $student->id) }}"><i
+                                                    class="bi bi-eye"></i>Edit</a>
 
                                         </button>
+                                        <button class="btn btn-success text-white"><a class="text-white" href="{{ route('student.show', $student->id) }}">Show</a></button>
 
 
-                                        <form action="{{ route('student.destroy',$student->id ) }}" method="post">
+                                        <form action="{{ route('student.destroy', $student->id) }}" method="post">
                                             @csrf
-                                            <button class="btn btn-danger btn-sm"
+
+
+                                            <button onclick="return confirm('Are you sure ?')" class="btn btn-danger btn-sm"
                                                 type="submit">
                                                 <i class="bi bi-trash"></i>
 
