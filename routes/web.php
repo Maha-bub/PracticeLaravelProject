@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\StudentController;
-
+use App\Http\Controllers\DistrictController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,3 +32,9 @@ Route::post('students/{id}', [StudentController::class,'destroy'])->name('studen
 // Route::get('/studnets/create', function () {
 //     return view('backend.students.create');
 // });
+
+
+Route::get('/district',[DistrictController::class,'create']);
+
+//for store district
+Route::post('/district',[DistrictController::class,'store']);
