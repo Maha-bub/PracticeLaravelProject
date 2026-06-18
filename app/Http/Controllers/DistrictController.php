@@ -12,7 +12,9 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        //
+        $districts = District::all();
+
+    return view('backend.districts.index', compact('districts'));
     }
 
     /**
@@ -20,7 +22,7 @@ class DistrictController extends Controller
      */
     public function create()
     {
-        return view('district.create');
+        return view('backend.districts.create');
     }
 
     /**
@@ -32,7 +34,7 @@ class DistrictController extends Controller
             'district'=>$request->district
         ]);
 
-        return 'District Created Successfully Done .'
+        return 'District Created Successfully Done .';
     }
 
     /**

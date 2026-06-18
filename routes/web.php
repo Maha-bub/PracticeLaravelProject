@@ -34,7 +34,9 @@ Route::post('students/{id}', [StudentController::class,'destroy'])->name('studen
 // });
 
 
-Route::get('/district',[DistrictController::class,'create']);
+Route::get('/districts/create',[DistrictController::class,'create'])->name('district.create');
 
 //for store district
-Route::post('/district',[DistrictController::class,'store']);
+Route::post('/districts',[DistrictController::class,'store'])->name('district.store');
+
+Route::get('/districts', [DistrictController::class, 'index'])->name('district.index');
