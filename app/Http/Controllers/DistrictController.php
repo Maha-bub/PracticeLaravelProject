@@ -14,7 +14,7 @@ class DistrictController extends Controller
     {
         $districts = District::all();
 
-    return view('backend.districts.index', compact('districts'));
+        return view('backend.districts.index', compact('districts'));
     }
 
     /**
@@ -30,11 +30,15 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
-        District::create([
-            'district'=>$request->district
+        $request->validate([
+            'district_name' => 'required|string|max:255',
         ]);
 
-        return 'District Created Successfully Done .';
+        District::create([
+            'district_name' => $request->district_name,
+        ]);
+
+        return redirect()->route('district.index')->with('succes', 'District created successfully!');
     }
 
     /**
@@ -50,7 +54,8 @@ class DistrictController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $district = District::findOrFail($id);
+        return view('backend.districts.edit', compact('district'));
     }
 
     /**
@@ -58,7 +63,16 @@ class DistrictController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'district_name' => 'required|string|max:255',
+        ]);
+
+        $district = District::findOrFail($id);
+        $district->update([
+            'district_name' => $request->district_name,
+        ]);
+
+        return redirect()->route('district.index')->with('succes', 'District updated successfully!');
     }
 
     /**
@@ -66,6 +80,7 @@ class DistrictController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        District::find($id)->delete();
+        return redirect()->route('distric.index')->with('success', 'District Deleted successfully!');
     }
 }
