@@ -85,7 +85,7 @@
                             </td>
 
 
-                            <td class="d-flex">
+                            <!-- <td class="d-flex">
 
                                 <button class="btn btn-info btn-sm" type="submit">
                                     <a href="{{ route('student.edit', $student->id) }}"><i
@@ -95,19 +95,41 @@
                                 <button class="btn btn-success text-white"><a class="text-white" href="{{ route('student.show', $student->id) }}">Show</a></button>
 
 
-                                <form action="{{ route('student.destroy', $student->id) }}" method="post">
+                                <form  action="{{ route('student.destroy', $student->id) }}" method="post">
                                     @csrf
 
 
                                     <button onclick="return confirm('Are you sure ?')" class="btn btn-danger btn-sm"
                                         type="submit">
-                                        <i class="bi bi-trash"></i>
+                                       <a href=""><i class="bi bi-trash"></i></a>
+                                        
 
                                     </button>
                                 </form>
 
 
 
+                            </td> -->
+
+                            <td class="d-flex gap-2 align-items-center">
+                                <!-- Edit Button -->
+                                <a href="{{ route('student.edit', $student->id) }}" class="btn btn-info btn-sm text-white">
+                                    <i class="bi bi-pencil-fill"></i>Edit
+                                </a>
+
+                                <!-- Show Button -->
+                                <a href="{{ route('student.show', $student->id) }}" class="btn btn-success btn-sm text-white">
+                                    <i class="bi bi-eye-fill me-1"></i>Show
+                                </a>
+
+                                <!-- Delete Button Form -->
+                                <form action="{{ route('student.destroy', $student->id) }}" method="POST" class="m-0" onsubmit="return confirm('Are you sure?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-trash"></i>Delete
+                                    </button>
+                                </form>
                             </td>
 
                         </tr>
