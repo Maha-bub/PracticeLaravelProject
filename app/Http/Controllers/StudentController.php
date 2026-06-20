@@ -37,7 +37,6 @@ class StudentController extends Controller
             'fullname' => 'required|min:4|max:25',
             'gender' => 'required',
             'email' => 'email|required|unique:students,email',
-<<<<<<< HEAD
             'phone' => 'min:11|max:14',
             'photo' => 'required|image|mimes:jpg,png,svg,jpeg,webp,gif|max:3072'
         ]);
@@ -46,23 +45,8 @@ class StudentController extends Controller
         $photo_Extension = $request->photo->extension();
         $photoName = $rand_num . time() . "." . $photo_Extension;
 
-        $request->photo->move(public_path('images'),$photoName);
+        $request->photo->move(public_path('images'), $photoName);
         // dd($photoName);
-=======
-            'phone' => 'min:11||max:14',
-            'photo' => 'required|image|mimes:jpg,png,jpeg,svg,webp|max:2048'
-
-        ]);
-
-        // dd($request->photo->getClientOriginalName()); getclientoriginalname method user for get the file name!!!
-        $random_name = rand(1, 20);
-        $extension_lower = strtolower($request->photo->extension());
-        $fileName = $random_name . time() . "." . $extension_lower;
-
-        $request->photo->move(public_path('images'),$fileName);
-
-        // dd($fileName);
->>>>>>> da7d6348b6b35cf6719760dabc7e67313eb919d6
 
 
         // dd($request);
@@ -77,11 +61,7 @@ class StudentController extends Controller
 
         $subjects = implode(",", $subjects);
         $student->subjects = $subjects;
-<<<<<<< HEAD
-        $student->photo=$photoName;
-=======
-        $student->photo='images/'.$fileName;
->>>>>>> da7d6348b6b35cf6719760dabc7e67313eb919d6
+        $student->photo = $photoName;
 
         // dd($subject);
 
@@ -132,15 +112,14 @@ class StudentController extends Controller
         $student->district = $request->district;
         $subjects = $request->subjects;
 
-        $subjects = implode(",", $subjects);
+        $subjects = $request->subjects;
+        $student->subjects = is_array($subjects) ? implode(",", $subjects) : '';
 
-
-        $student->subjects = $subjects;
 
         // dd($subject);
 
         $student->save();
-        return redirect('/students')->with('succes', 'Successfully Student Updated!');
+        return redirect('/students')->with('success', 'Successfully Student Updated!');
     }
 
     /**
