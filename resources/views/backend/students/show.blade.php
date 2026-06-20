@@ -35,7 +35,7 @@
                             <div><span>Email:</span><strong>{{ old('email', $student->email) }}</strong></div>
                             <div><span>Phone</span><strong>{{ old('phone', $student->phone) }}</strong></div>
                             <div><span>Subjects</span><strong>{{ old('subjects', $student->subjects) }}</strong></div>
-                           
+
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,8 @@
                                 <div class="invalid-feedback">Enter a valid email.</div>
                             </div>
                             <div class="col-12"><label class="form-label" for="profileBio">Phone</label>
-                                <input class="form-control" value="{{ old('phone', $student->phone) }}" rows="5"></input>
+                                <input class="form-control" value="{{ old('phone', $student->phone) }}"
+                                    rows="5"></input>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end mt-4"><button class="btn btn-primary" type="submit"><i

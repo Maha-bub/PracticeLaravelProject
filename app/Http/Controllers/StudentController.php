@@ -36,9 +36,19 @@ class StudentController extends Controller
             'fullname' => 'required|min:4|max:25',
             'gender' => 'required',
             'email' => 'email|required|unique:students,email',
-            'phone' => 'min:11||max:14'
+            'phone' => 'min:11||max:14',
+            'photo' => 'required|image|mimes:jpg,png,jpeg,svg,webp|max:2048'
 
         ]);
+
+        // dd($request->photo->getClientOriginalName()); getclientoriginalname method user for get the file name!!!
+        $random_name = rand(1, 20);
+        $extension_lower = strtolower($request->photo->extension());
+        $fileName = $random_name . time() . "." . $extension_lower;
+
+        $request->photo->move(public_path('images'),$fileName);
+
+        // dd($fileName);
 
 
         // dd($request);
@@ -52,9 +62,8 @@ class StudentController extends Controller
         $subjects = $request->subjects;
 
         $subjects = implode(",", $subjects);
-
-
         $student->subjects = $subjects;
+        $student->photo='images/'.$fileName;
 
         // dd($subject);
 
@@ -68,7 +77,7 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-         $student = Student::find($id);
+        $student = Student::find($id);
         return view('backend.students.show', ['student' => $student]);
     }
 
@@ -97,7 +106,7 @@ class StudentController extends Controller
 
         // dd($request);
         // echo "hello world!";
-        $student =Student::find($id);
+        $student = Student::find($id);
         $student->name = $request->fullname;
         $student->gender = $request->gender;
         $student->email = $request->email;

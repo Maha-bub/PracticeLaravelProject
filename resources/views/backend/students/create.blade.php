@@ -33,7 +33,7 @@
                         </div>
                     @endif
 
-                    <form class="panel needs-validation" action="{{ route('student.store') }}" method="post" novalidate>
+                    <form class="panel needs-validation" enctype="multipart/form-data" action="{{ route('student.store') }}" method="post" novalidate>
                         @csrf
                         <div class="panel-header">
                             <div>
@@ -136,6 +136,14 @@
                                 <div class="invalid-feedback">Choose Your Subjects</div>
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="photo">Choose Student Photo</label>
+                            <input class="form-control" id="photo" name="photo" type="file"
+                                value="{{ old('photo') }}" required>
+                            <div class="invalid-feedback">Photo is required.</div>
+                        </div>
+
 
                         <!-- Buttons -->
                         <div class="d-flex flex-wrap justify-content-end gap-2 mt-4">

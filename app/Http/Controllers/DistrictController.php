@@ -80,7 +80,7 @@ class DistrictController extends Controller
      */
     public function destroy(string $id)
     {
-        District::find($id)->delete();
-        return redirect()->route('distric.index')->with('success', 'District Deleted successfully!');
+        District::findOrFail($id)->delete();
+        return redirect()->route('districts.index')->with('success', 'District Deleted successfully!');
     }
 }
