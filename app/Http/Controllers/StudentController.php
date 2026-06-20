@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 
 use App\Models\Student;
@@ -36,9 +37,16 @@ class StudentController extends Controller
             'fullname' => 'required|min:4|max:25',
             'gender' => 'required',
             'email' => 'email|required|unique:students,email',
-            'phone' => 'min:11||max:14'
-
+            'phone' => 'min:11|max:14',
+            'photo' => 'required|image|mimes:jpg,png,svg,jpeg,webp,gif|max:3072'
         ]);
+
+        $rand_num = rand(1, 50);
+        $photo_Extension = $request->photo->extension();
+        $photoName = $rand_num . time() . "." . $photo_Extension;
+
+        $request->photo->move(public_path('images'),$photoName);
+        // dd($photoName);
 
 
         // dd($request);
@@ -55,12 +63,12 @@ class StudentController extends Controller
 
 
         $student->subjects = $subjects;
+        $student->photo=$photoName;
 
         // dd($subject);
 
         $student->save();
         return redirect('/students')->with('succes', 'Successfully Student Created');
-
     }
 
     /**
@@ -68,7 +76,7 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-         $student = Student::find($id);
+        $student = Student::find($id);
         return view('backend.students.show', ['student' => $student]);
     }
 
@@ -89,7 +97,8 @@ class StudentController extends Controller
         $request->validate([
             'fullname' => 'required|min:4|max:25',
             'gender' => 'required',
-            'email' => 'email|required|unique:students,email',
+            // 'email' => 'email|required|unique:students,email',
+            'email' => 'email|required|unique:students,email,' . $id,
             'phone' => 'min:11||max:14'
 
         ]);
@@ -97,7 +106,7 @@ class StudentController extends Controller
 
         // dd($request);
         // echo "hello world!";
-        $student =Student::find($id);
+        $student = Student::find($id);
         $student->name = $request->fullname;
         $student->gender = $request->gender;
         $student->email = $request->email;
@@ -125,5 +134,4 @@ class StudentController extends Controller
         $student->delete();
         return redirect()->route('student.index')->with('success', 'Student Deleted!');
     }
-
 }
