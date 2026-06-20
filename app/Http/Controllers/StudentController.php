@@ -37,6 +37,7 @@ class StudentController extends Controller
             'fullname' => 'required|min:4|max:25',
             'gender' => 'required',
             'email' => 'email|required|unique:students,email',
+<<<<<<< HEAD
             'phone' => 'min:11|max:14',
             'photo' => 'required|image|mimes:jpg,png,svg,jpeg,webp,gif|max:3072'
         ]);
@@ -47,6 +48,21 @@ class StudentController extends Controller
 
         $request->photo->move(public_path('images'),$photoName);
         // dd($photoName);
+=======
+            'phone' => 'min:11||max:14',
+            'photo' => 'required|image|mimes:jpg,png,jpeg,svg,webp|max:2048'
+
+        ]);
+
+        // dd($request->photo->getClientOriginalName()); getclientoriginalname method user for get the file name!!!
+        $random_name = rand(1, 20);
+        $extension_lower = strtolower($request->photo->extension());
+        $fileName = $random_name . time() . "." . $extension_lower;
+
+        $request->photo->move(public_path('images'),$fileName);
+
+        // dd($fileName);
+>>>>>>> da7d6348b6b35cf6719760dabc7e67313eb919d6
 
 
         // dd($request);
@@ -60,10 +76,12 @@ class StudentController extends Controller
         $subjects = $request->subjects;
 
         $subjects = implode(",", $subjects);
-
-
         $student->subjects = $subjects;
+<<<<<<< HEAD
         $student->photo=$photoName;
+=======
+        $student->photo='images/'.$fileName;
+>>>>>>> da7d6348b6b35cf6719760dabc7e67313eb919d6
 
         // dd($subject);
 
